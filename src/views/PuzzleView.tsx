@@ -33,8 +33,8 @@ function PuzzleView() {
       <div className="container-memory">
         <JigsawPuzzle
           imageSrc="img/cover.png"
-          rows={4}
-          columns={4}
+          rows={3}
+          columns={3}
           onSolved={() => {
             setConfetti(true);
             setRandom(randomValue());
