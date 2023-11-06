@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { JigsawPuzzle } from "react-jigsaw-puzzle/lib";
+import Confetti from "react-confetti";
 import "react-jigsaw-puzzle/lib/jigsaw-puzzle.css";
 
 const data = [
@@ -19,6 +20,7 @@ const randomValue = (): number => {
 };
 
 function PuzzleView() {
+  const [start, setStart] = useState(false);
   const [confetti, setConfetti] = useState(false);
   const [random, setRandom] = useState(1);
 
@@ -33,14 +35,21 @@ function PuzzleView() {
       <div className="container-memory">
         <JigsawPuzzle
           imageSrc="img/cover.png"
-          rows={3}
-          columns={3}
+          rows={2}
+          columns={2}
           onSolved={() => {
             setConfetti(true);
             setRandom(randomValue());
+            setStart(true);
           }}
         />
       </div>
+      <Confetti
+        width={1440}
+        height={1280}
+        run={start}
+        style={{ visibility: !confetti ? "hidden" : "visible" }}
+      />
 
       <button style={{ marginTop: "1rem" }} onClick={reloadWindow}>
         Reset
